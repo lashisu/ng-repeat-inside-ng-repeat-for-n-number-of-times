@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GridSystem</title>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+<style>
+li{
+  list-style: none;
+  background-color:#334559;
+  color:#FFF;
+  padding:2px;
+  cursor: pointer;
+  
+}
+</style>
+</head>
+<body>
+<div ng-app="mainApp" ng-controller="mainCtrl">
+  <script type="text/ng-template" id="treeNodes.html">
+    <ul>
+      <li ng-repeat="node in nodes" >
+        <div ng-click="node.expand = (node.expand?false:true);" ><i class="fa" ng-class="{'fa-caret-right':(node.node.length && !node.expand), 'fa-caret-down':(node.node.length && node.expand)}"></i>&nbsp;{{node.name}}</div>
+        <div ng-show="node.node.length && node.expand"  ng-include=" 'treeNodes.html' " onload="nodes = node.node"></div>
+      </li>
+    </ul>
+  </script>
+  <div ng-include=" 'treeNodes.html'"></div>
+</div>
+<script>
+var jimApp = angular.module("mainApp",  []);
+jimApp.controller('mainCtrl', function($scope){
+  $scope.nodes = [
+        {
+          "id": "id of the concept model",
+          "name": "Curcumin",
+          "type": "conceptmodel",
+          "node": [
+            {
+              "id": "group1",
+              "name": "Node 01",
+              "weight": "70",
+              "type": "text",
+              "node": [
+                {
+                  "id": "group11",
+                  "name": "Node 02",
+                  "weight": "70",
+                  "type": "structure",
+                  "node": [
+					{
+					  "id": "group11",
+					  "name": "Node 03",
+					  "weight": "70",
+					  "type": "structure",
+					  "node": [
+					{
+					  "id": "group11",
+					  "name": "Node 03",
+					  "weight": "70",
+					  "type": "structure",
+					  "node": [
+					  {
+					  "id": "group11",
+					  "name": "Node 03",
+					  "weight": "70",
+					  "type": "structure",
+					  "node": []
+					}
+					  ]
+					}
+					  ]
+					}
+				  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "id of the concept model",
+          "name": "Abuse Resistent Technology",
+          "type": "conceptmodel",
+          "node": [
+            {
+              "id": "group1",
+              "name": "Category 01",
+              "weight": "70",
+              "type": "text",
+              "node": []
+            }
+          ]
+        },
+        {
+          "id": "id of the concept model",
+          "name": "PC in Aviation",
+          "type": "conceptmodel",
+          "node": [
+            {
+              "id": "group1",
+              "name": "Industry",
+              "weight": "70",
+              "type": "text",
+              "node": [
+                 {
+              "id": "group1",
+              "name": "Node 01",
+              "weight": "70",
+              "type": "text",
+              "node": []
+                }
+              ]
+            }
+          ]
+        }
+      ];
+});
+</script>
+</body>
+</html>
